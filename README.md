@@ -8,6 +8,6 @@ A curated but personal collection of tag videos and images
 [tag video support](https://github.com/feederbox826/plugins/tree/main/plugins/tag-video)
 
 ## links
-[checklist](https://feederbox.github.io/tags/inventory) |
+[checklist](https://feederbox826.github.io/tags/inventory/) |
 [gallery browser](https://tags.feederbox.cc/) |
 [export json](https://tags.feederbox.cc/tags-export.json)

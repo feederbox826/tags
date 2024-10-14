@@ -1,0 +1,11 @@
+body {
+  background-color: #000;
+  color: #e1e1e1;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+tr:nth-child(even) {
+  background-color: #333
+}

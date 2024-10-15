@@ -11,13 +11,20 @@ const getElem = (name) => {
   return cell
 }
 
-function addToTable(name, img, vid, ignore) {
+function addToTable(name, img, vid, ignore, alt) {
   if (ignore) return
   var body = document.getElementById("tagbody");
   var row = document.createElement('tr')
-  var cell1 = document.createElement('td')
-  cell1.textContent = name
-  row.appendChild(cell1)
+  var nameCell = document.createElement('td')
+  nameCell.textContent = name
+  var altCell = document.createElement('td')
+  if (alt) {
+    const a = document.createElement('a')
+    a.href = `${BASEURL}/media/original/alt/`
+    a.textContent = "✅"
+    altCell.appendChild(a)
+  } else altCell.textContent = "❌"
+  row.appendChild(nameCell)
   row.appendChild(getElem(img))
   row.appendChild(getElem(vid))
   body.appendChild(row)
@@ -26,7 +33,7 @@ fetch(`${BASEURL}/tags-export.json`)
   .then(res => res.json())
   .then(data => {
     const allTags = Object.entries(data)
-      .map(([name, data]) => ([name, data.img, data.vid, data.ignore]))
+      .map(([name, data]) => ([name, data.img, data.vid, data.ignore, data.alt]))
     allTags.forEach(tag => addToTable(...tag))
     const total = allTags.length
     document.getElementById("total").textContent = total

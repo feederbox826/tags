@@ -2,7 +2,7 @@
 
 A curated but personal collection of tag videos and images
 
-## import tags into my local stash
+## import tags into your stash
 [tag-import plugin](https://github.com/feederbox826/plugins/tree/main/plugins/tag-import)
 
 [tag video support](https://github.com/feederbox826/plugins/tree/main/plugins/tag-video)

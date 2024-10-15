@@ -23,7 +23,7 @@ function addToTable(name, img, vid, ignore, alt) {
     a.href = `${BASEURL}/media/original/alt/`
     a.textContent = "✅"
     altCell.appendChild(a)
-  } else altCell.textContent = "❌"
+  } else altCell.textContent = "-"
   row.appendChild(nameCell)
   row.appendChild(getElem(img))
   row.appendChild(getElem(vid))

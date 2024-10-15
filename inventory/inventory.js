@@ -21,7 +21,7 @@ function addToTable(name, img, vid, ignore, alt) {
   if (alt) {
     const a = document.createElement('a')
     a.href = `${BASEURL}/media/original/alt/`
-    a.textContent = "✅"
+    a.textContent = "📂"
     altCell.appendChild(a)
   } else altCell.textContent = "-"
   row.appendChild(nameCell)

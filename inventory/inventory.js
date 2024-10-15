@@ -27,6 +27,7 @@ function addToTable(name, img, vid, ignore, alt) {
   row.appendChild(nameCell)
   row.appendChild(getElem(img))
   row.appendChild(getElem(vid))
+  row.appendChild(altCell)
   body.appendChild(row)
 }
 fetch(`${BASEURL}/tags-export.json`)

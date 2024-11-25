@@ -1,0 +1,25 @@
+* {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+body {
+  background-color: #000;
+  color: #e1e1e1;
+}
+
+tr:nth-child(even) {
+  background-color: #333;
+}
+
+th {
+  position: sticky;
+  background-color: #000;
+  top: 0;
+}
+
+button {
+  background-color: #111;
+  color: #e1e1e1;
+}

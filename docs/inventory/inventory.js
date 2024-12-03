@@ -28,7 +28,7 @@ const colorScale = (height) =>
     : height >= 1080 ? ["#a1d99b", "#111"] // FHD / 2MP
     : height >= 720 ? ["#ffa500", "#111"] // HD / 0.9MP
     : height >= 420 ? ["#f5e151", "#111"] // fullsize with tag-vid
-    : height >= 260 ? ["#ff5733", "#111"] // grid zoom-0 with tag-vid
+    : height >= 280 ? ["#ff5733", "#111"] // grid zoom-0 with tag-vid
     : ["#810402", "#eee"]
 
 function addToTable(tag) {

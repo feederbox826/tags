@@ -21,24 +21,14 @@ const getElem = (name) => {
 }
 
 // colorScale from tagger-img-res
+// rescaled to target img  heights
 const colorScale = (height) =>
-  // amazing
-  height == "SVG" ? ["#f2a8b0", "#111"]
-    : height > 8640 ? ["#cd0065", "#eee"]
-    : height == 8640 ? ["#9b00c9", "#eee"]
-    : height >= 4320 ? ["#9c18fb", "#eee"]
-    // great
-    : height >= 2160 ? ["#076dbe", "#eee"]
-    // good
-    : height >= 1800 ? ["#008115", "#eee"]
-    : height >= 1440 ? ["#00b155", "#111"]
-    // above avg
-    : height >= 900 ? ["#8fd259", "#111"]
-    // average
-    : height >= 720 ? ["#dde12e", "#111"]
-    // bad
-    : height >= 540 ? ["#ff9c1f", "#111"]
-    : height >= 480 ? ["#cd0a06", "#eee"]
+  height >= 3040 ? ["#8a2be2", "#eee"] // 12MP
+    : height >= 2160 ? ["#3c6fb0", "#eee"] // 4K/ 8.3MP
+    : height >= 1080 ? ["#a1d99b", "#111"] // FHD / 2MP
+    : height >= 720 ? ["#ffa500", "#111"] // HD / 0.9MP
+    : height >= 420 ? ["#f5e151", "#111"] // fullsize with tag-vid
+    : height >= 260 ? ["#ff5733", "#111"] // grid zoom-0 with tag-vid
     : ["#810402", "#eee"]
 
 function addToTable(tag) {
@@ -56,9 +46,14 @@ function addToTable(tag) {
   } else altCell.textContent = "-"
   // dimensions
   var dimCell = document.createElement('td')
-  if (tag.img && tag.imgDimensions) {
-    const height = tag.imgDimensions.type == "svg" ? "SVG" : tag.imgDimensions.height
-    dimCell.textContent = height == "SVG" ? height : `${height}px`
+  // if svg, apply
+  if (tag.img && tag.imgDimensions?.type == "svg") {
+    dimCell.textContent = "SVG ∞"
+    dimCell.style.backgroundColor = "#0ff"
+    dimCell.style.color = "#111"
+  } else if (tag.img && tag.imgDimensions?.height) {
+    const height = tag.imgDimensions.height
+    dimCell.textContent = `${height} px`
     // add bg if needed
     const [bg, fg] = colorScale(height)
     dimCell.style.backgroundColor = bg
@@ -73,9 +68,12 @@ function addToTable(tag) {
 }
 
 const reload = () => {
+  // set cursor
+  document.body.style.cursor = "wait"
   fetch("https://feederbox.cc/trigger/tags/update/await")
     .then(res => res.json())
     .then(data => mapTags(data))
+    .then(() => document.body.style.cursor = "auto")
 }
 
 const mapTags = tags => {

@@ -1,6 +1,9 @@
 ## Tag Creation
 Images are saved as lossless webp for their competitive lossless size savings and very good lossy size savings. While lossless does not compare with lossy compression, I wanted to maintain a high quality source image if I needed to reference or re-extract subtags from. Tags are always exported at a 1:1 W:H ratio, with some tags with 1px of difference
 
+Update 2024/12/10  
+Due to realizing how rapidly I was using storage space, the hosted images will be reencoded to lossy webp @ q90, effort 6. Source images will still be kept elsewhere but this will dramatically help with storage
+
 Videos are saved as VP9 webm files with a bitrate of 10,000kbps. This usually ends up at 1MB/s with the goal length of 10s per tag, with leeway above and below those values. Videos are also exported at 1:1 ratio, usually at 720x720px, 1080x1080px, 2160x2160px
 
 ## Access

@@ -91,6 +91,13 @@ const mapTags = tags => {
   showTable(allTags)
 }
 
+document.addEventListener("keydown", (e) => {
+  if (e.key === "r" && e.ctrlKey) {
+    e.preventDefault()
+    reload()
+  }
+})
+
 fetch(`${BASEURL}/tags-export.json`, {
   cache: "no-store"
 })

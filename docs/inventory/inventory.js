@@ -23,12 +23,12 @@ const getElem = (name) => {
 // colorScale from tagger-img-res
 // rescaled to target img  heights
 const colorScale = (height) =>
-  height >= 3040 ? ["#8a2be2", "#eee"] // 12MP
-    : height >= 2160 ? ["#3c6fb0", "#eee"] // 4K/ 8.3MP
-    : height >= 1080 ? ["#66c2a5 ", "#111"] // FHD / 2MP
-    : height >= 720 ? ["#a1d99b", "#111"] // HD / 0.9MP
-    : height >= 420 ? ["#ffa500", "#111"] // fullsize with tag-vid
-    : height >= 280 ? ["#ff5733", "#111"] // grid zoom-0 with tag-vid
+  height >= 3040 ? ["#9b00c9", "#eee"] // 12MP
+    : height >= 2160 ? ["#076dbe", "#eee"] // 4K/ 8.3MP
+    : height >= 1080 ? ["#00b155 ", "#111"] // FHD / 2MP
+    : height >= 720 ? ["#8fd259", "#111"] // HD / 0.9MP
+    : height >= 420 ? ["#ff9c1f", "#111"] // fullsize with tag-vid
+    : height >= 280 ? ["#cd0a06", "#eee"] // grid zoom-0 with tag-vid
     : ["#810402", "#eee"]
 
 function addToTable(tag) {

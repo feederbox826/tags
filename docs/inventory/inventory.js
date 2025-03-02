@@ -81,12 +81,15 @@ const mapTags = tags => {
   vidTags = []
   imgTags = []
   bothTags = []
+  missingTags = []
   allTags = Object.entries(tags)
     .map(([name, tags]) => ({ name, ...tags }))
   allTags.forEach(tag => {
     if (tag.img && tag.vid) bothTags.push(tag)
     else if (tag.img) imgTags.push(tag)
     else if (tag.vid) vidTags.push(tag)
+    // missing tags queue
+    if (!tag.img || !tag.vid || (tag.imgDimensions && tag.imgDimensions.height < 720)) missingTags.push(tag)
   })
   showTable(allTags)
 }

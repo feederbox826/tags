@@ -111,4 +111,5 @@ fetch(`${BASEURL}/tags-export.json`, {
     document.getElementById("vid").textContent = vidTags.length
     document.getElementById("img").textContent = imgTags.length
     document.getElementById("both").textContent = bothTags.length
+    document.getElementById("missing").textContent = missingTags.length
   })

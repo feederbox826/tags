@@ -90,7 +90,7 @@ const mapTags = tags => {
     else if (tag.vid) vidTags.push(tag)
     // missing tags queue
     if (!tag.img || !tag.vid ||
-      (tag.imageDimension?.type !== svg && tag.imgDimensions.height < 720)) missingTags.push(tag)
+      (tag.imageDimension?.type !== "svg" && tag.imgDimensions.height < 720)) missingTags.push(tag)
   })
   showTable(allTags)
 }

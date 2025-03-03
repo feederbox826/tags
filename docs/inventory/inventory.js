@@ -31,12 +31,24 @@ const colorScale = (height) =>
     : height >= 280 ? ["#cd0a06", "#eee"] // grid zoom-0 with tag-vid
     : ["#810402", "#eee"]
 
+const errColor = (tag) =>
+  (!tag.img && !tag.vid)
+    ? "#1976d2" // missing both
+    : (!tag.img)
+      ? "#c2185b" // missing img
+      : (!tag.vid)
+        ? "#9c27b0" // missing vid
+        : (tag.imageDimension?.type !== "svg" && tag.imgDimensions?.height < 720) // has both, lowres check
+            ? "#ff7043" // low resolution, not svg
+            : "#4caf50" // has both, high res
+
 function addToTable(tag) {
   if (tag.ignore) return
   var body = document.getElementById("tagbody");
   var row = document.createElement('tr')
   var nameCell = document.createElement('td')
   nameCell.textContent = tag.name
+  nameCell.style.backgroundColor = errColor(tag)
   var altCell = document.createElement('td')
   if (tag.alt) {
     const a = document.createElement('a')

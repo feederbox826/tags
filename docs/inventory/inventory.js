@@ -4,6 +4,9 @@ let imgTags = []
 let bothTags = []
 let allTags = []
 
+// flag for admin interface
+const dontIgnore = document.URL.includes("admin")
+
 const showTable = (arr) => {
   document.getElementById("tagbody").innerHTML = ""
   arr.forEach(tag => addToTable(tag))
@@ -43,7 +46,7 @@ const errColor = (tag) =>
             : "#4caf50" // has both, high res
 
 function addToTable(tag) {
-  if (tag.ignore) return
+  if (tag.ignore && !dontIgnore) return
   var body = document.getElementById("tagbody");
   var row = document.createElement('tr')
   var nameCell = document.createElement('td')

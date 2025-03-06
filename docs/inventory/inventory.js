@@ -23,15 +23,18 @@ const getElem = (name) => {
   return cell
 }
 
+// fullsize detail-header: 308px
+// grid zoom-3: 392px
+
 // colorScale from tagger-img-res
-// rescaled to target img  heights
+// rescaled to target img heights
 const colorScale = (height) =>
   height >= 3040 ? ["#9b00c9", "#eee"] // 12MP
     : height >= 2160 ? ["#076dbe", "#eee"] // 4K/ 8.3MP
     : height >= 1080 ? ["#00b155 ", "#111"] // FHD / 2MP
     : height >= 720 ? ["#8fd259", "#111"] // HD / 0.9MP
-    : height >= 420 ? ["#ff9c1f", "#111"] // fullsize with tag-vid
-    : height >= 280 ? ["#cd0a06", "#eee"] // grid zoom-0 with tag-vid
+    : height >= 420 ? ["#ff9c1f", "#111"] // 480p > grid-zoom-3 and detail-header
+    : height >= 224 ? ["#cd0a06", "#eee"] // grid zoom-0
     : ["#810402", "#eee"]
 
 const errColor = (tag) =>

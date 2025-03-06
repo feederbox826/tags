@@ -20,7 +20,7 @@ td {
   padding: 0 4px;
 }
 
-button {
+button, input {
   background-color: #111;
   color: #e1e1e1;
 }

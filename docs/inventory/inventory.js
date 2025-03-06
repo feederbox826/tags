@@ -3,6 +3,7 @@ let vidTags = []
 let imgTags = []
 let bothTags = []
 let allTags = []
+let fuse
 
 // flag for admin interface
 const dontIgnore = document.URL.includes("admin")
@@ -91,6 +92,7 @@ const reload = () => {
   fetch("https://feederbox.cc/trigger/tags/update/await")
     .then(res => res.json())
     .then(data => mapTags(data))
+    .then(() => fuse = new Fuse(allTags, fuseConfig))
     .then(() => document.body.style.cursor = "auto")
 }
 
@@ -120,12 +122,44 @@ document.addEventListener("keydown", (e) => {
   }
 })
 
+// fuse config
+const fuseConfig = {
+  keys: ["name", "aliases"],
+  threshold: 0.4,
+  shouldSort: true,
+  includeScore: true, // debugging
+  minMatchCharLength: 2,
+};
+
+// fuse search
+// https://stackoverflow.com/a/54265129
+function debounce(f, interval) {
+  let timer = null;
+  return (...args) => {
+    clearTimeout(timer);
+    return new Promise((resolve) => {
+      timer = setTimeout(() => resolve(f(...args)), interval);
+    });
+  };
+}
+async function search(searchValue) {
+  if (searchValue.length < 2) return showTable(allTags);
+  const results = fuse.search(searchValue, {
+    limit: 20,
+  });
+  console.debug(searchValue, results);
+  const filterTable = results.map((result) => result.item);
+  showTable(filterTable, searchValue);
+}
+document.getElementById("search").addEventListener("input", debounce((e) => search(e.target.value), 300));
+
 fetch(`${BASEURL}/tags-export.json`, {
   cache: "no-store"
 })
   .then(res => res.json())
   .then(data => {
     mapTags(data)
+    fuse = new Fuse(allTags, fuseConfig); // search
     document.getElementById("total").textContent = allTags.length
     document.getElementById("vid").textContent = vidTags.length
     document.getElementById("img").textContent = imgTags.length

@@ -19,6 +19,7 @@
       <button onclick="showTable(bothTags)"><span>both: <span id="both">0</span></span></button>
     </span>
     <br>
+    <input type="text" id="search" placeholder="search">
     <table>
       <thead>
         <tr>
@@ -31,6 +32,7 @@
       </thead>
       <tbody id="tagbody"></tbody>
     </table>
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js"></script>
     <script src="inventory.js"></script>
   </body>
 </html>

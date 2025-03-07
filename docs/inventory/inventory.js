@@ -7,6 +7,7 @@ let fuse
 
 // flag for admin interface
 const dontIgnore = document.URL.includes("admin")
+const searchbox = document.getElementById("search")
 
 const showTable = (arr) => {
   document.getElementById("tagbody").innerHTML = ""
@@ -91,9 +92,12 @@ const reload = () => {
   document.body.style.cursor = "wait"
   fetch("https://feederbox.cc/trigger/tags/update/await")
     .then(res => res.json())
-    .then(data => mapTags(data))
-    .then(() => fuse = new Fuse(allTags, fuseConfig))
-    .then(() => document.body.style.cursor = "auto")
+    .then(data => {
+      mapTags(data)
+      fuse = new Fuse(allTags, fuseConfig)
+      document.body.style.cursor = "auto"
+      if (searchbox.value) search(searchbox.value)
+    })
 }
 
 const mapTags = tags => {
@@ -119,6 +123,9 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "r" && e.ctrlKey) {
     e.preventDefault()
     reload()
+  } else if (e.key === "f" && e.ctrlKey) {
+    e.preventDefault()
+    searchbox.focus()
   }
 })
 
@@ -142,6 +149,7 @@ function debounce(f, interval) {
     });
   };
 }
+
 async function search(searchValue) {
   if (searchValue.length < 2) return showTable(allTags);
   const results = fuse.search(searchValue, {
@@ -151,7 +159,7 @@ async function search(searchValue) {
   const filterTable = results.map((result) => result.item);
   showTable(filterTable, searchValue);
 }
-document.getElementById("search").addEventListener("input", debounce((e) => search(e.target.value), 300));
+searchbox.addEventListener("input", debounce((e) => search(e.target.value), 300));
 
 fetch(`${BASEURL}/tags-export.json`, {
   cache: "no-store"

@@ -7,8 +7,8 @@ const cleanFileName = (filename) =>
     .replace(/ |\/|\\/g, "_")
 
 const handleClipboard = (evt) => {
-  navigator.clipboard.readText()
-    .then(text => navigator.clipboard.writeText(cleanFileName(text)))
+  const text = window.getSelection().toString()
+  navigator.clipboard.writeText(cleanFileName(text))
   evt.preventDefault()
 }
 

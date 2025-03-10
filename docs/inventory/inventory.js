@@ -135,6 +135,7 @@ const fuseConfig = {
   threshold: 0.4,
   shouldSort: true,
   includeScore: true, // debugging
+  findAllMatches: true,
   minMatchCharLength: 2,
 };
 
@@ -152,9 +153,7 @@ function debounce(f, interval) {
 
 async function search(searchValue) {
   if (searchValue.length < 2) return showTable(allTags);
-  const results = fuse.search(searchValue, {
-    limit: 20,
-  });
+  const results = fuse.search(searchValue);
   console.debug(searchValue, results);
   const filterTable = results.map((result) => result.item);
   showTable(filterTable, searchValue);

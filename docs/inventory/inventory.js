@@ -116,10 +116,8 @@ const mapTags = tags => {
     else if (tag.img) imgTags.push(tag)
     else if (tag.vid) vidTags.push(tag)
     // missing tags queue
-    if (!tag.img || badImg) {
-      noimgTags.push(tag)
-      if (!tag.vid) missingTags.push(tag)
-    }
+    if (!tag.vid || !tag.img || badImg) missingTags.push(tag)
+    if (!tag.img || badImg) noimgTags.push(tag)
   })
   showTable(allTags)
 }

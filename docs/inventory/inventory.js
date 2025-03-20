@@ -3,6 +3,8 @@ let vidTags = []
 let imgTags = []
 let bothTags = []
 let allTags = []
+let missingTags = []
+let noimgTags = []
 let fuse
 
 // flag for admin interface
@@ -101,20 +103,23 @@ const reload = () => {
 }
 
 const mapTags = tags => {
-  allTags = []
+  allTags = Object.entries(tags)
+    .map(([name, tags]) => ({ name, ...tags }))
   vidTags = []
   imgTags = []
   bothTags = []
+  noimgTags = []
   missingTags = []
-  allTags = Object.entries(tags)
-    .map(([name, tags]) => ({ name, ...tags }))
   allTags.forEach(tag => {
+    const badImg = tag.imageDimension?.type !== "svg" && tag.imgDimensions.height < 720
     if (tag.img && tag.vid) bothTags.push(tag)
     else if (tag.img) imgTags.push(tag)
     else if (tag.vid) vidTags.push(tag)
     // missing tags queue
-    if (!tag.img || !tag.vid ||
-      (tag.imageDimension?.type !== "svg" && tag.imgDimensions.height < 720)) missingTags.push(tag)
+    if (!tag.img || badImg) {
+      if (!tag.vid) missingTags.push(tag)
+      noimgTags.push(tag)
+    }
   })
   showTable(allTags)
 }
@@ -160,6 +165,8 @@ async function search(searchValue) {
 }
 searchbox.addEventListener("input", debounce((e) => search(e.target.value), 300));
 
+const setCount = (id, count) => document.getElementById(id).textContent = count
+
 fetch(`${BASEURL}/tags-export.json`, {
   cache: "no-store"
 })
@@ -167,9 +174,11 @@ fetch(`${BASEURL}/tags-export.json`, {
   .then(data => {
     mapTags(data)
     fuse = new Fuse(allTags, fuseConfig); // search
-    document.getElementById("total").textContent = allTags.length
-    document.getElementById("vid").textContent = vidTags.length
-    document.getElementById("img").textContent = imgTags.length
-    document.getElementById("both").textContent = bothTags.length
-    document.getElementById("missing").textContent = missingTags.length
+    // set counts
+    setCount("total", allTags.length)
+    setCount("vid", vidTags.length)
+    setCount("img", imgTags.length)
+    setCount("both", bothTags.length)
+    setCount("noimg", noimgTags.length)
+    setCount("missing", missingTags.length)
   })

@@ -57,7 +57,12 @@ function addToTable(tag) {
   var body = document.getElementById("tagbody");
   var row = document.createElement('tr')
   var nameCell = document.createElement('td')
-  nameCell.textContent = tag.name
+  if (tag.stashID) {
+    const stashCell = document.createElement('a')
+    stashCell.href = `https://stashdb.org/tags/${tag.stashID}`
+    stashCell.textContent = tag.name
+    nameCell.appendChild(stashCell)
+  } else nameCell.textContent = tag.name
   nameCell.style.backgroundColor = errColor(tag)
   var altCell = document.createElement('td')
   if (tag.alt) {

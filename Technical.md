@@ -43,6 +43,9 @@ const cleanFileName = (filename) =>
 Images are always .webp or .svg (for some meta tags)  
 Videos are always .webm
 
+## Caching
+Because of the (relatively) static nature of the tags, caching is unfortunately unavoidable. The only analytics I run are from those proxied through CloudFlare. From Mar 4 to Apr 3, 2025 this is the bandwidth graph: ![March 4 to April 3, 2025 bandwidth](bandwidth.png) This makes caching an unfortunate reality as it saves me over 200GB of bandwidth. The entire tag repo is ~7GB, which equals ~36.7 people downloading the entire collection of tags. Caddy is configured for 7 days Cache-Control with etags.
+
 ## Backend
 1. Tags downloaded with [stash-tag-sync](https://github.com/feederbox826/stash-tag-sync)
 2. Gallery created with [thumbsup](https://github.com/feederbox826/thumbsup)

@@ -14,7 +14,7 @@ Index URL: `https://feederbox826.github.io/plugins/main/index.yml`
 ## links
 [checklist](https://feederbox826.github.io/tags/inventory/) |
 [gallery browser](https://tags.feederbox.cc/) |
-[file browser](https://tags.feederbox.cc/media.original) |
+[file browser](https://tags.feederbox.cc/media/original) |
 [export json](https://tags.feederbox.cc/tags-export.json)
 
 for more details and technical breakdown, see [Technical.md](Technical.md)

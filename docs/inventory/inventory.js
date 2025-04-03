@@ -57,12 +57,7 @@ function addToTable(tag) {
   var body = document.getElementById("tagbody");
   var row = document.createElement('tr')
   var nameCell = document.createElement('td')
-  if (tag.stashID) {
-    const stashCell = document.createElement('a')
-    stashCell.href = `https://stashdb.org/tags/${tag.stashID}`
-    stashCell.textContent = tag.name
-    nameCell.appendChild(stashCell)
-  } else nameCell.textContent = tag.name
+  nameCell.textContent = tag.name
   nameCell.style.backgroundColor = errColor(tag)
   var altCell = document.createElement('td')
   if (tag.alt) {
@@ -85,6 +80,13 @@ function addToTable(tag) {
     const [bg, fg] = colorScale(height)
     dimCell.style.backgroundColor = bg
     dimCell.style.color = fg
+  }
+  if (tag.stashID) {
+    const stashCell = document.createElement('a')
+    stashCell.href = `https://stashdb.org/tags/${tag.stashID}`
+    stashCell.title = "StashDB"
+    stashCell.textContent = "🔎"
+    nameCell.prepend(stashCell)
   }
   row.appendChild(nameCell)
   row.appendChild(getElem(tag.img))

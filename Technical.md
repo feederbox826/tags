@@ -11,7 +11,7 @@ B2 + CF Worker proxy (Free bandwith, filename required)
 Tags are backed up to b2 daily with a proxied cf worker serving assets with free bandwidth
 
 ### Caddy
-Caddy /by-name (10T bandwidth, filename not required)  
+Caddy `/by-name` (10T bandwidth, filename not required)  
 image only (falls back to stil screenshot) `https://tags.feederbox.cc/by-name/img/tagname`  
 any (video or image) `https://tags.feederbox.cc/by-name/tagname`
 

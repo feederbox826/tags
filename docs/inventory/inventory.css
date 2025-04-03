@@ -29,3 +29,12 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+header > a {
+  text-decoration: underline;
+  color: lightblue;
+}
+
+h3 {
+  margin-bottom: 0;
+}

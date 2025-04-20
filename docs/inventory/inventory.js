@@ -103,12 +103,14 @@ function addToTable(tag) {
 const reload = () => {
   // set cursor
   document.body.style.cursor = "wait"
+  document.getElementById("loading").classList.remove("hidden")
   fetch("https://feederbox.cc/trigger/tags/update/await")
     .then(res => res.json())
     .then(data => {
       mapTags(data)
       fuse = new Fuse(allTags, fuseConfig)
       document.body.style.cursor = "auto"
+      document.getElementById("loading").classList.add("hidden")
       if (searchbox.value) search(searchbox.value)
     })
 }

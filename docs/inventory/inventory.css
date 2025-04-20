@@ -38,3 +38,7 @@ header > a {
 h3 {
   margin-bottom: 0;
 }
+
+.hidden {
+  display: none;
+}

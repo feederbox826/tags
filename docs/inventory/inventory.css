@@ -42,3 +42,19 @@ h3 {
 .hidden {
   display: none;
 }
+
+.missing-both {
+  background-color: "#1976d2";
+}
+.no-img {
+  background-color: #c2185b;
+}
+.low-res-img {
+  background-color: #ff9800;
+}
+.high-res-img {
+  background-color: #4caf50;
+}
+.no-vid {
+  background-color: #9c27b0;
+}

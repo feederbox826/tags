@@ -41,16 +41,16 @@ const colorScale = (height) =>
     : height >= 224 ? ["#cd0a06", "#eee"] // grid zoom-0
     : ["#810402", "#eee"]
 
-const errColor = (tag) =>
+const errClass = (tag) =>
   (!tag.img && !tag.vid)
-    ? "#1976d2" // missing both
+    ? "missing-both" // missing both
     : (!tag.img)
-      ? "#c2185b" // missing img
+      ? "no-img" // missing img
       : (!tag.vid)
-        ? "#9c27b0" // missing vid
+        ? "no-vid" // missing vid
         : (tag.imageDimension?.type !== "svg" && tag.imgDimensions?.height < 720) // has both, lowres check
-            ? "#ff7043" // low resolution, not svg
-            : "#4caf50" // has both, high res
+            ? "low-res-img" // low resolution, not svg
+            : "high-res-img" // has both, high res
 
 function addToTable(tag) {
   if (tag.ignore && !dontIgnore) return
@@ -68,7 +68,7 @@ function addToTable(tag) {
   }
   var nameCell = document.createElement('td')
   nameCell.textContent = tag.name
-  nameCell.style.backgroundColor = errColor(tag)
+  nameCell.classList.add(errClass(tag))
   var altCell = document.createElement('td')
   if (tag.alt) {
     const a = document.createElement('a')

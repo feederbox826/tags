@@ -41,16 +41,16 @@ const colorScale = (height) =>
     : height >= 224 ? ["#cd0a06", "#eee"] // grid zoom-0
     : ["#810402", "#eee"]
 
-const errClass = (tag) =>
-  (!tag.img && !tag.vid)
-    ? "missing-both" // missing both
-    : (!tag.img)
-      ? "no-img" // missing img
-      : (!tag.vid)
-        ? "no-vid" // missing vid
-        : (tag.imageDimension?.type !== "svg" && tag.imgDimensions?.height < 720) // has both, lowres check
-            ? "low-res-img" // low resolution, not svg
-            : "high-res-img" // has both, high res
+const errClass = (tag) => {
+  const arr = []
+  arr.push(tag.vid ? "has-vid" : "no-vid") // has vid
+  if (!tag.img) arr.push("no-img") // has no img
+  else {
+    if (tag.imgDimensions?.type === "svg") arr.push("high-res-img") // svg img
+    else arr.push(tag.imgDimensions?.height >= 720 ? "high-res-img" : "low-res-img") // resolution
+  }
+  return arr
+}
 
 function addToTable(tag) {
   if (tag.ignore && !dontIgnore) return
@@ -68,7 +68,7 @@ function addToTable(tag) {
   }
   var nameCell = document.createElement('td')
   nameCell.textContent = tag.name
-  nameCell.classList.add(errClass(tag))
+  nameCell.classList.add(...errClass(tag))
   var altCell = document.createElement('td')
   if (tag.alt) {
     const a = document.createElement('a')
@@ -93,8 +93,8 @@ function addToTable(tag) {
   }
   row.appendChild(sDBCell)
   row.appendChild(nameCell)
-  row.appendChild(getElem(tag.img))
   row.appendChild(getElem(tag.vid))
+  row.appendChild(getElem(tag.img))
   row.appendChild(altCell)
   row.appendChild(dimCell)
   body.appendChild(row)

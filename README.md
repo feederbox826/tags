@@ -17,4 +17,5 @@ Index URL: `https://feederbox826.github.io/plugins/main/index.yml`
 [file browser](https://tags.feederbox.cc/media/original) |
 [export json](https://tags.feederbox.cc/tags-export.json)
 
-for more details and technical breakdown, see [Technical.md](Technical.md)
+for more ways to access it, see [Access.md](./Access.md)  
+for more techincal details and conventions, see [Technical.md](Technical.md)

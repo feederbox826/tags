@@ -47,3 +47,5 @@ Can also be copied from the [inventory](https://feederbox826.github.io/tags/inve
 ## File extensions
 All videos are `.webm`, most images `.webp`, `.svg` for some meta tags
 
+### optimized
+Since thumbnails in optimized are also webp, they have the extension `.webm.webp` (.webp suffix without removing webm)

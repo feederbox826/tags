@@ -39,6 +39,16 @@ h3 {
   margin-bottom: 0;
 }
 
+.legend-guide {
+  width: 12px;
+  height: 12px;
+  padding: 0;
+}
+
+#legend-table thead th {
+  width: 32px;
+}
+
 .hidden {
   display: none;
 }

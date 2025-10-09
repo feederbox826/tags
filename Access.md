@@ -1,9 +1,9 @@
 # Direct tag access
 ### Example
 For tag `Animal Ears`, Filename is `Animal_Ears`  
-B2 URL:
-- Image: [`https://b2.tags.feederbox.cc/Animal_Ears.webp`](https://b2.tags.feederbox.cc/Animal_Ears.webp)
-- Video: [`https://b2.tags.feederbox.cc/Animal_Ears.webm`](https://b2.tags.feederbox.cc/Animal_Ears.webm)
+Lookup URL:
+- Image: [`https://look.tags.feederbox.cc/Animal_Ears.webp`](https://look.tags.feederbox.cc/img/Animal_Ears)
+- Video: [`https://look.tags.feederbox.cc/Animal_Ears.webm`](https://look.tags.feederbox.cc/vid/Animal_Ears)
 
 Caddy:
 - Any: [`https://tags.feederbox.cc/by-name/Animal_Ears`](https://tags.feederbox.cc/by-name/Animal_Ears)
@@ -11,11 +11,9 @@ Caddy:
 - [Optimized](./Technical.md#quality) image: [`https://tags.feederbox.cc/media/optimized/Animal_Ears.webp`](https://tags.feederbox.cc/media/optimized/Animal_Ears.webp)
 - [alt/lowres](./Technical.md#folder-format): [`https://tags.feederbox.cc/media/original/alt/`](https://tags.feederbox.cc/media/original/alt/), [`https://tags.feederbox.cc/media/original/lowres/`](https://tags.feederbox.cc/media/original/lowres/)
 
-### B2
-B2 + CF Worker proxy (Free bandwith, filename required)  
-`https://b2-tags.feederbox826.workers.dev/{filename}`  
-`https://b2.tags.feederbox.cc/{filename}`  
-Tags are backed up to B2 hourly with a proxied cf worker serving assets with free bandwidth
+### lookup
+B2 + CF Worker proxy
+See details at https://github.com/feederbox826/tags-lookup-worker. Will proxy to B2 and fallback to Caddy
 
 ### Caddy
 Caddy `/by-name` (10T bandwidth, filename not required)  

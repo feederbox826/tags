@@ -54,25 +54,29 @@ h3 {
 }
 
 .no-vid.no-img {
-  background-color: #8B1440;
+  background-color: #d81b60;
 }
 
 .no-img {
-  background-color: #c2185b;
+  background-color: #ff9800;
+  color: #111
 }
 
 .high-res-img {
-  background-color: #9c27b0;
+  background-color: #00b155;
+  color: #111
 }
 
 .low-res-img {
-  background-color: #00838F;
+  background-color: #ffeb3b;
+  color: #111
 }
 
 .has-vid.low-res-img {
-  background-color: #9c27b0;
+  background-color: #4fc3f7;
+  color: #111
 }
 
 .has-vid.high-res-img {
-  background-color: #4caf50;
+  background-color: #9b00c9;
 }

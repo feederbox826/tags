@@ -55,6 +55,7 @@ h3 {
 
 .no-vid.no-img {
   background-color: #d81b60;
+  color: #eee
 }
 
 .no-img {
@@ -79,4 +80,5 @@ h3 {
 
 .has-vid.high-res-img {
   background-color: #9b00c9;
+  color: #fff
 }

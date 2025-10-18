@@ -18,6 +18,7 @@ th {
 
 td {
   padding: 0 4px;
+  color: #eee;
 }
 
 button, input {
@@ -54,31 +55,25 @@ h3 {
 }
 
 .no-vid.no-img {
-  background-color: #d81b60;
-  color: #eee
+  background-color: #940000;
 }
 
 .no-img {
-  background-color: #ff9800;
-  color: #111
+  background-color: #8000cc;
 }
 
 .high-res-img {
-  background-color: #00b155;
-  color: #111
+  background-color: #007acc;
 }
 
 .low-res-img {
-  background-color: #ffeb3b;
-  color: #111
+  background-color: #005bb0;
 }
 
 .has-vid.low-res-img {
-  background-color: #4fc3f7;
-  color: #111
+  background-color: #008020;
 }
 
 .has-vid.high-res-img {
-  background-color: #9b00c9;
-  color: #fff
+  background-color: #00aa33;
 }

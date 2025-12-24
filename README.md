@@ -12,10 +12,10 @@ Index URL: `https://feederbox826.github.io/plugins/main/index.yml`
 ![Adding repository](https://github.com/feederbox826/plugins/raw/main/docs/add-plugins.png)
 
 ## links
-[checklist](https://feederbox826.github.io/tags/inventory/) |
-[gallery browser](https://tags.feederbox.cc/) |
+[checklist](https://tags.feederbox.cc/inventory/) |
+[gallery browser](https://tags.feederbox.cc/media/original?layout=grid) |
 [file browser](https://tags.feederbox.cc/media/original) |
 [export json](https://tags.feederbox.cc/tags-export.json)
 
 for more ways to access it, see [Access.md](./Access.md)  
-for more techincal details and conventions, see [Technical.md](Technical.md)
+for more techincal details and conventions, see [Technical.md](Technical.md)  

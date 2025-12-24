@@ -1,0 +1,47 @@
+<!DOCTYPE html><html>
+<head>
+  <meta name="color-scheme" content="light dark">
+  <meta charset="UTF-8">
+  <title>fbox826 tags</title>
+  <style>
+    pre {
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    a {
+      color: white;
+    }
+  </style>
+</head>
+<body>
+<pre>A curated but personal collection of tag videos and images
+<div id="import">
+# import tags into your stash
+tag-import: <a href="https://github.com/feederbox826/plugins/tree/main/plugins/tag-import"><code>tag-import</code> plugin</a>
+tag-video: <a href="https://github.com/feederbox826/plugins/tree/main/plugins/tag-video"><code>tag-video</code> plugin</a>
+
+index url: <a href="https://github.com/feederbox826/plugins">https://feederbox826.github.io/plugins/main/index.yml</a>
+</div><div id="links">
+# links
+checklist: <a href="https://tags.feederbox.cc/inventory/">/inventory</a>
+gallery browser: <a href="https://tags.feederbox.cc/media/original/?layout=grid">/media/original/?layout=grid</a>
+file browser: <a href="https://tags.feederbox.cc/media/original/">/media/original/</a>
+export json: <a href="https://tags.feederbox.cc/tags-export.json">/tags-export.json</a>
+</div><div id="stats">
+# stats
+stashdb coverage: <span id="stashdb-coverage">loading...</span>
+complete tags: <span id="complete-tags">loading...</span>
+</div>
+</pre>
+<script>
+  async function fetchStats() {
+    const data = await fetch('https://tags.feederbox.cc/stats-export.json')
+      .then(res => res.json())
+    const stashdb_coverage = `${data.total} / ${data.stashdb_total} (${(data.total/data.stashdb_total*100).toFixed(2)}%)`
+    const tag_complete = data.total - data.incomplete
+    const tag_completion = `${tag_complete} / ${data.total} (${(tag_complete/data.total*100).toFixed(2)}%)`
+    document.getElementById('stashdb-coverage').innerText = stashdb_coverage
+    document.getElementById('complete-tags').innerText = tag_completion
+  }
+  fetchStats()
+</script></body></html>

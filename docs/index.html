@@ -11,6 +11,37 @@
     a {
       color: white;
     }
+    .coverage {
+      width: 100%;
+      height: 2.5em;
+      display: flex;
+    }
+    .segment {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: visible;
+      white-space: nowrap;
+      color: white;
+      position: relative;
+    }
+    @media (max-width: 800px) {
+      .coverage {
+        height: auto;
+        flex-direction: column;
+      }
+      .segment {
+        height: 1.5em;
+        overflow: visible;
+        white-space: nowrap;
+        justify-content: left;
+      }
+    }
+    .both { background: #3CB371; }
+    .vid  { background: #6A5ACD; }
+    .img  { background: #4169E1; }
+    .none { background: #a1a1a1; }
   </style>
 </head>
 <body>
@@ -28,20 +59,35 @@ gallery browser: <a href="https://tags.feederbox.cc/media/original/?layout=grid"
 file browser: <a href="https://tags.feederbox.cc/media/original/">/media/original/</a>
 export json: <a href="https://tags.feederbox.cc/tags-export.json">/tags-export.json</a>
 </div><div id="stats">
-# stats
-stashdb coverage: <span id="stashdb-coverage">loading...</span>
-complete tags: <span id="complete-tags">loading...</span>
+# live stats
+stashdb coverage: <span class="coverage" id="stashdb-coverage"></span>
+tags coverage: <span class="coverage" id="tags-coverage"></span>
 </div>
 </pre>
 <script>
   async function fetchStats() {
     const data = await fetch('https://tags.feederbox.cc/stats-export.json')
       .then(res => res.json())
-    const stashdb_coverage = `${data.total} / ${data.stashdb_total} (${(data.total/data.stashdb_total*100).toFixed(2)}%)`
-    const tag_complete = data.total - data.incomplete
-    const tag_completion = `${tag_complete} / ${data.total} (${(tag_complete/data.total*100).toFixed(2)}%)`
-    document.getElementById('stashdb-coverage').innerText = stashdb_coverage
-    document.getElementById('complete-tags').innerText = tag_completion
+    const tags_segment = document.createElement('div')
+    tags_segment.className = 'segment both'
+    tags_segment.textContent = `tags: ${data.total} (${(data.total/data.stashdb_total*100).toFixed(2)}%)`
+    tags_segment.style.width = (data.total/data.stashdb_total*100) + '%'
+    const none_segment = document.createElement('div')
+    none_segment.className = 'segment none'
+    none_segment.textContent = `none: ${data.stashdb_total - data.total} (${((data.stashdb_total - data.total)/data.stashdb_total*100).toFixed(2)}%)`
+    none_segment.style.width = ((data.stashdb_total - data.total)/data.stashdb_total*100) + '%'
+    const coverage_bar = document.getElementById('stashdb-coverage')
+    coverage_bar.appendChild(tags_segment)
+    coverage_bar.appendChild(none_segment)
+    // coverage bar
+    for (const key of ['both', 'vid', 'img']) {
+      const value = data[key]
+      const segment = document.createElement('div')
+      segment.className = `segment ${key}`
+      segment.style.width = (value/data.total*100) + '%'
+      segment.textContent = `${key} - ${value} (${(value/data.total*100).toFixed(0)}%)`
+      document.getElementById('tags-coverage').appendChild(segment)
+    }
   }
   fetchStats()
 </script></body></html>

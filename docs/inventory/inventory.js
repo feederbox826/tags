@@ -46,7 +46,7 @@ const errClass = (tag) => {
   arr.push(tag.vid ? "has-vid" : "no-vid") // has vid
   if (!tag.img) arr.push("no-img") // has no img
   else {
-    if (tag.imgDimensions?.type === "svg") arr.push("high-res-img") // svg img
+    if (tag.imgDimensions?.type == "svg") arr.push("high-res-img") // svg img
     else arr.push(tag.imgDimensions?.height >= 720 ? "high-res-img" : "low-res-img") // resolution
   }
   return arr
@@ -124,7 +124,7 @@ const mapTags = tags => {
   noimgTags = []
   missingTags = []
   allTags.forEach(tag => {
-    const badImg = tag.img && tag.imageDimension?.type != "svg" && tag.imgDimensions.height < 720
+    const badImg = tag.img && tag.imgDimensions?.type != "svg" && tag.imgDimensions.height < 720
     if (tag.img && tag.vid) bothTags.push(tag)
     else if (tag.img) imgTags.push(tag)
     else if (tag.vid) vidTags.push(tag)

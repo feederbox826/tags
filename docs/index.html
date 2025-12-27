@@ -22,7 +22,6 @@
       align-items: center;
       justify-content: center;
       overflow: visible;
-      white-space: nowrap;
       color: white;
       position: relative;
     }
@@ -85,7 +84,7 @@ tags coverage: <span class="coverage" id="tags-coverage"></span>
       const segment = document.createElement('div')
       segment.className = `segment ${key}`
       segment.style.width = (value/data.total*100) + '%'
-      segment.textContent = `${key} - ${value} (${(value/data.total*100).toFixed(0)}%)`
+      segment.textContent = `${key}: ${value} (${(value/data.total*100).toFixed(0)}%)`
       document.getElementById('tags-coverage').appendChild(segment)
     }
   }

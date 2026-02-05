@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div class="hero">
+      <input type="text" id="input">
+      <input type="text" id="output">
+    </div>
+    <script src="../inventory/clipboard.js"></script>
+    <script>
+      const output = document.getElementById("output");
+      const input = document.getElementById("input");
+      const update = (evt) => output.value = cleanFileName(evt.target.value)
+      input.addEventListener("input", update);
+    </script>
+  </body>
+</html>

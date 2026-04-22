@@ -2,8 +2,8 @@
 ### Example
 For tag `Animal Ears`, Filename is `Animal_Ears`  
 Lookup URL:
-- Image: [`https://look.tags.feederbox.cc/Animal_Ears.webp`](https://look.tags.feederbox.cc/img/Animal_Ears)
-- Video: [`https://look.tags.feederbox.cc/Animal_Ears.webm`](https://look.tags.feederbox.cc/vid/Animal_Ears)
+- Image: [`https://look.tags.feederbox.cc/img/Animal Ears`](https://look.tags.feederbox.cc/img/Animal%20Ears)
+- Video: [`https://look.tags.feederbox.cc/vid/Animal Ears`](https://look.tags.feederbox.cc/vid/Animal%20Ears)
 
 Caddy:
 - Any: [`https://tags.feederbox.cc/by-name/Animal_Ears`](https://tags.feederbox.cc/by-name/Animal_Ears)
@@ -12,11 +12,15 @@ Caddy:
 - [alt/lowres](./Technical.md#folder-format): [`https://tags.feederbox.cc/media/original/alt/`](https://tags.feederbox.cc/media/original/alt/), [`https://tags.feederbox.cc/media/original/lowres/`](https://tags.feederbox.cc/media/original/lowres/)
 
 ### lookup
-B2 + CF Worker proxy
-See details at https://github.com/feederbox826/tags-lookup-worker. Will proxy to B2 and fallback to Caddy
+B2 + CF Worker proxy [github](https://github.com/feederbox826/tags-lookup-worker)
 
-### Caddy
-Caddy `/by-name` (10T bandwidth, filename not required)  
+Lookup supports the most ways of accessing
+- by stashid: [`http://look.tags.feederbox.cc/img/2a8aa3cf-c28b-4d08-b111-7807ced2184e`](http://look.tags.feederbox.cc/img/2a8aa3cf-c28b-4d08-b111-7807ced2184e)
+- by alias: [`https://look.tags.feederbox.cc/img/Bunny Ears`](https://look.tags.feederbox.cc/img/Bunny%20Ear)
+- by name: [`https://look.tags.feederbox.cc/img/animal ears`](https://look.tags.feederbox.cc/img/animal%20ears)
+
+### Caddy (filename conversion required)
+Caddy `/by-name`
 image only (falls back to stil screenshot):  
 `https://tags.feederbox.cc/by-name/img/{tagname}`  
 any (video or image):  

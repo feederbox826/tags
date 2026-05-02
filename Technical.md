@@ -29,6 +29,32 @@ landed in [3ae2774](https://github.com/feederbox826/plugins/commit/3ae2774776c70
   - 90VMAF @ 1080p, 92VMAF @ 2160p
   - 2MB for 1080p, ~3MB for 2160
 
+Encodes are done with the following parameters
+```bash
+ffmpeg -i "in.webm"
+  -c:v libvpx-vp9
+  -b:v 0 # set to 0 to enforce crf
+  -crf 34 # under recommended, but I found it gives consistent VMAF >90 with 1080p
+          # also this is a reencode and the originals are kept, not too fussed about quality
+  -speed 0 # "best" quality, since we are encoding once and uploading
+  -row-mt 1 # row-based multithreading, greatly increases speed
+  -tile-columns 2 # min() because of 1080p
+  -frame-parallel 1 # multithreading
+  -auto-alt-ref 1
+  -lag-in-frames 25 # alt-ref frames for increase in quality
+  -threads 2 # tune for your system
+  -c:a copy # copy audio as-is
+  "out.webm"
+```
+refernces/ guides
+- https://trac.ffmpeg.org/wiki/Encode/VP9
+- https://developers.google.com/media/vp9/settings/vod/
+- https://wiki.webmproject.org/ffmpeg/vp9-encoding-guide were used as refer
+
+[assets/optimize.bat](assets/optimize.bat) for the drag-and-drop solution used in production.
+
+Encodes are not done with `webp-watcher` because of resources constraints on the VPS.
+
 ## Caching
 Because of the (relatively [^4]) static nature of the tags, caching is unfortunately unavoidable. The only analytics I run are from those proxied through CloudFlare. From Mar 4 to Apr 3, 2025 this is the bandwidth graph: ![March 4 to April 3, 2025 bandwidth](./assets/bandwidth.png) This makes caching an unfortunate reality as it saves me over 200GB of bandwidth. The entire tag repo is ~7GB, which equals ~36.7 people downloading the entire collection of tags.
 
